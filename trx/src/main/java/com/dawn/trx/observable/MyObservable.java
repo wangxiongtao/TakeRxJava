@@ -5,10 +5,18 @@ package com.dawn.trx.observable;
  */
 
 public abstract class MyObservable implements Observable {
+    /**
+     * 切换到子线程
+     * @return
+     */
     public MyObservable subscribeOn() {
         return new ThreadObservable(this);
     }
 
+    /**
+     * 切换到主线程
+     * @return
+     */
     public MyObservable observableOn() {
         return new MainThreadObservable(this);
     }

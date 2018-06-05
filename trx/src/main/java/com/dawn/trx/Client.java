@@ -15,10 +15,11 @@ public class Client {
           @Override
           public void fun(IEmitter emitter) {
               emitter.onNext("dsadsadsa");
+              emitter.onComplete("onComplete");
               LogUtil.i("==able===thread==>"+Thread.currentThread().getName());
               LogUtil.i("==able===onNext==>");
           }
-      }).subscribe(new Observer() {
+      }).subscribeOn().subscribe(new Observer() {
           @Override
           public void onNext(String s) {
               LogUtil.i("==onNext======>"+s);
@@ -29,7 +30,8 @@ public class Client {
 
           @Override
           public void onComplete(String s) {
-
+              LogUtil.i("==onComplete======>"+s);
+              LogUtil.i("==onComplete===thread==>"+Thread.currentThread().getName());
           }
       });
     }

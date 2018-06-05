@@ -8,7 +8,6 @@ import com.dawn.trx.LogUtil;
 import com.dawn.trx.observer.Observer;
 
 
-
 /**
  * Created by Administrator on 2018/6/5 0005.
  * 切换到主线程
@@ -20,19 +19,21 @@ public class MainThreadObservable extends MyObservable {
 
     public MainThreadObservable(Observable observable) {
         this.observable = observable;
-        mainHandler=new Handler(Looper.getMainLooper());
+        mainHandler = new Handler(Looper.getMainLooper());
     }
 
     @Override
     public void subscribe(Observer o) {
-        observable.subscribe(new MainThreadObserver(o));
+        observable.subscribe(new MainThreadObserver(o));//简单handler实现 RxJava里面是用Scheduler+handler
 
     }
 
-    private  class MainThreadObserver implements Observer,Runnable{
+    private class MainThreadObserver implements Observer, Runnable {
         Observer o;
-        int anInt;
-        String string;
+        boolean isOnext;
+        boolean isOnComplete;
+        String string1;
+        String string2;
 
 
         public MainThreadObserver(Observer o) {
@@ -41,38 +42,38 @@ public class MainThreadObservable extends MyObservable {
 
         @Override
         public void onNext(String s) {
-            string=s;
-            anInt=1;
+            string1 = s;
+            isOnext = true;
             schedule();
-
 
 
         }
 
         @Override
         public void onComplete(String s) {
-            string=s;
-            anInt=2;
+            string2 = s;
+            isOnComplete = true;
             schedule();
 
         }
 
-        private void schedule(){
-            Message message=Message.obtain(mainHandler,this);
+        private void schedule() {
+            Message message = Message.obtain(mainHandler, this);
             mainHandler.sendMessage(message);
         }
 
         @Override
         public void run() {
             LogUtil.i("====又切换到主线程了===>");
-            switch (anInt){
-                case 1:
-                    o.onNext(string);
-                    break;
-                case 2:
-                    o.onComplete(string);
-                    break;
+            if (isOnext) {
+                o.onNext(string1);
+                isOnext = false;
             }
+            if (isOnComplete) {
+                o.onComplete(string2);
+                isOnComplete = false;
+            }
+
 
         }
     }

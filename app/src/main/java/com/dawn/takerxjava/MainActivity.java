@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void fun(IEmitter emitter) {
                 emitter.onNext("dsadsadsa");
+                emitter.onComplete("onComplete");
                 LogUtil.i("==able===thread==>"+Thread.currentThread().getName());
 
             }
@@ -39,6 +40,8 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onComplete(String s) {
+                LogUtil.i("==onComplete======>"+s);
+                LogUtil.i("==onComplete===thread==>"+Thread.currentThread().getName());
 
             }
         });

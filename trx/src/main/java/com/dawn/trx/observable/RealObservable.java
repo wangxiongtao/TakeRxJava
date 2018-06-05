@@ -36,6 +36,7 @@ public class RealObservable extends MyObservable {
 
        @Override
        public void onComplete(String s) {
+            observer.onComplete(s);
 
        }
    }

@@ -18,7 +18,7 @@ public class ThreadObservable extends MyObservable {
     @Override
     public void subscribe(Observer o) {
         final ThreadObserver observer=new ThreadObserver(o);
-        new Thread(new Runnable() {
+        new Thread(new Runnable() {//我这里只是简单的new 了个新的线程， RxJava里面是用Scheduler配合线程池调度的，但是目的是一样的
             @Override
             public void run() {
                 LogUtil.i("====切换到子线程===>");
@@ -44,6 +44,7 @@ public class ThreadObservable extends MyObservable {
 
         @Override
         public void onComplete(String s) {
+            observer.onComplete(s);
 
         }
     }
