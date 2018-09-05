@@ -13,8 +13,8 @@ public class LogUtil {
     private static boolean DEBUG=true;
     public static void  i(String msg){
         if(DEBUG){
-            System.out.println(msg);
-//            Log.i(TAG,msg);
+//            System.out.println(msg);
+            Log.i(TAG,msg);
         }
 
     }

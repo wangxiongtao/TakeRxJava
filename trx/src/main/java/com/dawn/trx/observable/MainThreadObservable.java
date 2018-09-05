@@ -44,6 +44,7 @@ public class MainThreadObservable extends MyObservable {
         public void onNext(String s) {
             string1 = s;
             isOnext = true;
+            LogUtil.i("====onNext  mmmmmmm===>"+Thread.currentThread().getName());
             schedule();
 
 

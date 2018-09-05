@@ -1,1 +1,1 @@
-include ':app', ':trx'
+include ':app', ':trx', ':lib'
