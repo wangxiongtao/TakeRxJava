@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context="com.dawn.takerxjava.MainActivity">
 
-    <EditText
+    <com.dawn.takerxjava.view.SearchEditTextView
         android:id="@+id/ed"
         android:layout_width="match_parent"
         android:layout_height="50dp"

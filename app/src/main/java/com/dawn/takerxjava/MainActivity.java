@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.dawn.trx.LogUtil;
 import com.dawn.trx.observable.IEmitter;
@@ -22,6 +23,7 @@ import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.ObservableSource;
 import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
@@ -36,67 +38,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        editText=findViewById(R.id.ed);
-
-
-        Observable.create(new ObservableOnSubscribe<String>() {
-            @Override
-            public void subscribe(final ObservableEmitter<String> e) throws Exception {
-
-                editText.addTextChangedListener(new TextWatcher() {
-                    @Override
-                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-                    }
-
-                    @Override
-                    public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-                    }
-
-                    @Override
-                    public void afterTextChanged(Editable s) {
-                        if(s.length()>0){
-                            e.onNext(s.toString());
-                        }
+//        editText=findViewById(R.id.ed);
 
 
 
-                    }
-                });
-
-            }
-        }).debounce(400,TimeUnit.MILLISECONDS).switchMap(new Function<String, Observable<String>>() {
-            @Override
-            public Observable<String> apply(final String s) throws Exception {
-                return Observable.create(new ObservableOnSubscribe<String>() {
-                    @Override
-                    public void subscribe(ObservableEmitter<String> e) throws Exception {
-                        e.onNext(s+"and");
-                    }
-                });
-            }
-        }).subscribe(new Observer<String>() {
-            @Override
-            public void onSubscribe(Disposable d) {
-
-            }
-
-            @Override
-            public void onNext(String value) {
-                LogUtil.i("=======onnext===>"+value);
-            }
-
-            @Override
-            public void onError(Throwable e) {
-
-            }
-
-            @Override
-            public void onComplete() {
-
-            }
-        });
         Subscriber<String>subscriber=new Subscriber<String>() {
             @Override
             public void onSubscribe(Subscription s) {

@@ -3,9 +3,13 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/TakeRxJava.iml" filepath="$PROJECT_DIR$/TakeRxJava.iml" />
+      <module fileurl="file://E:\ASWorkSpace\TakeRxJava\TakeRxJava.iml" filepath="E:\ASWorkSpace\TakeRxJava\TakeRxJava.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://E:\ASWorkSpace\TakeRxJava\app\app.iml" filepath="E:\ASWorkSpace\TakeRxJava\app\app.iml" />
       <module fileurl="file://$PROJECT_DIR$/lib/lib.iml" filepath="$PROJECT_DIR$/lib/lib.iml" />
+      <module fileurl="file://E:\ASWorkSpace\TakeRxJava\lib\lib.iml" filepath="E:\ASWorkSpace\TakeRxJava\lib\lib.iml" />
       <module fileurl="file://$PROJECT_DIR$/trx/trx.iml" filepath="$PROJECT_DIR$/trx/trx.iml" />
+      <module fileurl="file://E:\ASWorkSpace\TakeRxJava\trx\trx.iml" filepath="E:\ASWorkSpace\TakeRxJava\trx\trx.iml" />
     </modules>
   </component>
 </project>
